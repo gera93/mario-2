@@ -34,6 +34,7 @@ m.show();
  m.show();
 
 }
+
 --------------------------------------------------------------------------------------------------------------------------
 //Clase Mario//
 
@@ -48,6 +49,7 @@ class Mario {
     this.imgsgd = [];
     this.imgss = [];
     this.frame = 0;
+    this.frame2 = 0;
     this.vel = 10;
     this.lado = 1;
     this.martillo = 1;
@@ -85,11 +87,11 @@ class Mario {
   showg(){
     if(this.martillo < 0){
        imageMode(CENTER);
-    image(this.imgsg[this.frame], this.x, this.y)
+    image(this.imgsg[this.frame2], this.x, this.y)
     }
     if(this.martillo > 0){
       imageMode(CENTER);
-    image(this.imgsgd[this.frame], this.x, this.y)
+    image(this.imgsgd[this.frame2], this.x, this.y)
     }
   }
   // stand(){
@@ -120,19 +122,19 @@ class Mario {
   }
   
   golpe(){
-     this.frame++ ;
+     this.frame2++ ;
     this.x = this.x + 0
-    if (this.frame > 5) {
-      this.frame = 0
+    if (this.frame2 > 5) {
+      this.frame2 = 0
     }
     this.martillo = -1
   }
   
   golped(){
-     this.frame++ ;
+     this.frame2++ ;
     this.x = this.x + 0
-    if (this.frame > 5) {
-      this.frame = 0
+    if (this.frame2 > 5) {
+      this.frame2 = 0
     }
     this.martillo = 1
   }
