@@ -1,0 +1,141 @@
+var m;
+
+function setup() {
+  createCanvas(400, 400);
+  m = new Mario();
+  frameRate(10);
+}
+
+function draw() {
+  background(220);
+
+
+  
+  if (keyIsPressed && keyCode == RIGHT_ARROW) {
+    m.show();
+    m.derecha();
+  }
+
+if (keyIsPressed && keyCode == LEFT_ARROW) {
+m.show();
+  m.izquierda();
+}
+  if (keyIsPressed && keyCode == 97) {
+    m.showg();
+     m.golpe();
+  }
+  
+  if (keyIsPressed && keyCode == 100) {
+    m.showg();
+     m.golped();
+  }
+  
+  if(!keyIsPressed)
+ m.show();
+
+}
+--------------------------------------------------------------------------------------------------------------------------
+//Clase Mario//
+
+class Mario {
+  constructor() {
+    this.x = width / 2;
+    this.y = height /2;
+    
+    this.imgs = [];
+    this.imgsm =[];
+    this.imgsg = [];
+    this.imgsgd = [];
+    this.imgss = [];
+    this.frame = 0;
+    this.vel = 10;
+    this.lado = 1;
+    this.martillo = 1;
+    
+    for (var i = 0; i < 12; i++) {
+      this.imgs[i] = loadImage('Mariod/' + i + '.gif')
+    }
+    
+    for ( i = 0; i < 12; i++) {
+      this.imgsm[i] = loadImage('Marioi/' + i + '.gif')
+    }
+    for ( i = 0; i < 6; i++) {
+      this.imgsg[i] = loadImage('Mariog/' + i + '.gif')
+    }
+    for ( i = 0; i < 6; i++) {
+      this.imgsgd[i] = loadImage('Mariogd/' + i + '.gif')
+    }
+    //  for ( i = 0; i < 4; i++) {
+    //   this.imgss[i] = loadImage('Marios/' + i + '.gif')
+    // }
+    
+  }
+  
+  show() {
+    if(this.lado > 0){
+    imageMode(CENTER);
+    image(this.imgs[this.frame], this.x, this.y)
+    }
+    if(this.lado < 0){
+      imageMode(CENTER);
+    image(this.imgsm[this.frame], this.x, this.y)
+    }
+  }
+  
+  showg(){
+    if(this.martillo < 0){
+       imageMode(CENTER);
+    image(this.imgsg[this.frame], this.x, this.y)
+    }
+    if(this.martillo > 0){
+      imageMode(CENTER);
+    image(this.imgsgd[this.frame], this.x, this.y)
+    }
+  }
+  // stand(){
+  //      imageMode(CENTER);
+  //   image(this.imgss[this.frame], this.x, this.y)
+  //   this.frame ++;
+  //   if (this.frame > 3) {
+  //     this.frame = 0
+  //  } 
+  //   }
+  
+  derecha() {
+    this.frame++;
+    this.x= this.x + 5;
+    if (this.frame > 11) {
+      this.frame = 0
+   } 
+   this.lado=1 
+  
+  }
+  izquierda() {
+    this.frame++ ;
+    this.x= this.x - 5;
+    if (this.frame > 11) {
+      this.frame = 0
+    }  
+    this.lado = -1
+  }
+  
+  golpe(){
+     this.frame++ ;
+    this.x = this.x + 0
+    if (this.frame > 5) {
+      this.frame = 0
+    }
+    this.martillo = -1
+  }
+  
+  golped(){
+     this.frame++ ;
+    this.x = this.x + 0
+    if (this.frame > 5) {
+      this.frame = 0
+    }
+    this.martillo = 1
+  }
+    
+    
+}
